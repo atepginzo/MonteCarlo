@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Monte Carlo Crop Prediction</title>
+    <title>Prediksi Produksi Padi Monte Carlo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,8 +15,8 @@
             <div class="brand">
                 <div class="brand-logo">MC</div>
                 <div class="brand-text">
-                    <h1>Monte Carlo Crop Prediction</h1>
-                    <p>Production forecasting for Rice using Monte Carlo Simulation</p>
+                    <h1>Prediksi Produksi Padi Monte Carlo</h1>
+                    <p>Peramalan produksi padi dengan simulasi Monte Carlo</p>
                 </div>
             </div>
         </header>
@@ -24,16 +24,16 @@
         <main class="app-main">
             <section class="grid-layout">
                 <section class="card card-glass full-span">
-                    <h2>Historical Data &amp; Interval Modeling</h2>
-                    <p class="section-subtitle">Last 10 years of Rice production with probability, cumulative probability, and mapped intervals (0 - 1000).</p>
+                    <h2>Data Historis &amp; Pemodelan Interval</h2>
+                    <p class="section-subtitle">10 tahun terakhir produksi padi lengkap dengan probabilitas, kumulatif, dan interval terpetakan (0 - 1000).</p>
                     <div class="table-wrapper">
                         <table class="data-table">
                             <thead>
                                 <tr>
-                                    <th>Year</th>
-                                    <th>Production</th>
-                                    <th>Probability</th>
-                                    <th>Cumulative</th>
+                                    <th>Tahun</th>
+                                    <th>Produksi</th>
+                                    <th>Probabilitas</th>
+                                    <th>Kumulatif</th>
                                     <th>Interval</th>
                                 </tr>
                             </thead>
@@ -53,12 +53,12 @@
                 </section>
 
                 <section class="card card-glass">
-                    <h2>Simulation Control</h2>
-                    <p class="section-subtitle">Choose how many future years you want the Monte Carlo model to predict.</p>
+                    <h2>Pengaturan Simulasi</h2>
+                    <p class="section-subtitle">Pilih berapa banyak tahun ke depan yang ingin diproyeksikan oleh model Monte Carlo.</p>
 
                     <form id="predict-form" method="POST" class="form-grid">
                         <div class="form-group">
-                            <label for="years_to_predict">Number of Years to Predict</label>
+                            <label for="years_to_predict">Jumlah Tahun yang Diprediksi</label>
                             <input
                                 type="number"
                                 id="years_to_predict"
@@ -70,7 +70,7 @@
                             />
                         </div>
                         <button type="submit" class="btn-primary" id="predict-btn">
-                            Run Monte Carlo Simulation
+                            Jalankan Simulasi Monte Carlo
                         </button>
                     </form>
 
@@ -78,30 +78,30 @@
                 </section>
 
                 <section class="card card-glass">
-                    <h2>Average Predicted Production</h2>
-                    <p class="section-subtitle">Mean of simulated production values for the selected horizon.</p>
+                    <h2>Rata-Rata Produksi Terprediksi</h2>
+                    <p class="section-subtitle">Rata-rata nilai produksi hasil simulasi untuk horizon yang dipilih.</p>
                     <div class="summary-card {% if avg_predicted is not none %}summary-visible fade-in{% endif %}">
                         {% if avg_predicted is not none %}
                             <div class="summary-value">{{ '{:,.2f}'.format(avg_predicted) }}</div>
-                            <div class="summary-label">Average predicted production</div>
+                            <div class="summary-label">Rata-rata produksi terprediksi</div>
                         {% else %}
-                            <div class="summary-placeholder">Run a simulation to see the forecasted production.</div>
+                            <div class="summary-placeholder">Jalankan simulasi untuk melihat proyeksi produksi.</div>
                         {% endif %}
                     </div>
                 </section>
 
                 <section class="card card-glass full-span">
-                    <h2>Prediction Results</h2>
-                    <p class="section-subtitle">Each simulated year is mapped from an LCM-based random number to a production value based on the historical intervals.</p>
+                    <h2>Hasil Prediksi</h2>
+                    <p class="section-subtitle">Setiap tahun simulasi dipetakan dari angka acak berbasis LCM ke nilai produksi berdasarkan interval historis.</p>
 
                     <div class="table-wrapper results-wrapper {% if prediction_results %}fade-in{% endif %}" id="results-container">
                         <table class="data-table">
                             <thead>
                                 <tr>
-                                    <th>Year Index</th>
-                                    <th>Random Number</th>
-                                    <th>Predicted Production</th>
-                                    <th>Reference Year</th>
+                                    <th>Indeks Tahun</th>
+                                    <th>Angka Acak</th>
+                                    <th>Produksi Terprediksi</th>
+                                    <th>Tahun Referensi</th>
                                 </tr>
                             </thead>
                             <tbody id="results-body">
@@ -122,7 +122,7 @@
                                 {% endfor %}
                             {% else %}
                                 <tr class="placeholder-row">
-                                    <td colspan="4">No predictions yet. Run the simulation to generate results.</td>
+                                    <td colspan="4">Belum ada prediksi. Jalankan simulasi untuk melihat hasil.</td>
                                 </tr>
                             {% endif %}
                             </tbody>
@@ -133,7 +133,7 @@
         </main>
 
         <footer class="app-footer">
-            <span>Monte Carlo Simulation &middot; Rice Crop Production</span>
+            <span>Simulasi Monte Carlo &middot; Produksi Padi</span>
         </footer>
     </div>
 
@@ -150,7 +150,7 @@
             const yearsNum = parseInt(years, 10);
 
             if (!years || isNaN(yearsNum) || yearsNum <= 0) {
-                message.textContent = 'Please enter a valid positive number of years.';
+                message.textContent = 'Masukkan jumlah tahun yang valid dan bernilai positif.';
                 message.classList.add('error');
                 return;
             }
@@ -158,7 +158,7 @@
             message.textContent = '';
             message.classList.remove('error');
             btn.disabled = true;
-            btn.textContent = 'Running...';
+            btn.textContent = 'Memproses...';
 
             fetch('{{ url_for("api_predict") }}', {
                 method: 'POST',
@@ -170,7 +170,7 @@
             .then(r => r.json())
             .then(data => {
                 btn.disabled = false;
-                btn.textContent = 'Run Monte Carlo Simulation';
+                btn.textContent = 'Jalankan Simulasi Monte Carlo';
 
                 if (data.error) {
                     message.textContent = data.error;
@@ -186,7 +186,7 @@
                 if (!results.length) {
                     const row = document.createElement('tr');
                     row.className = 'placeholder-row';
-                    row.innerHTML = '<td colspan="4">No predictions generated.</td>';
+                    row.innerHTML = '<td colspan="4">Belum ada prediksi yang dibuat.</td>';
                     resultsBody.appendChild(row);
                 } else {
                     results.forEach(r => {
@@ -213,11 +213,11 @@
                         summaryCard.classList.add('summary-visible');
                         summaryCard.innerHTML = `
                             <div class="summary-value">${Number(avg).toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
-                            <div class="summary-label">Average predicted production</div>
+                            <div class="summary-label">Rata-rata produksi terprediksi</div>
                         `;
                     } else {
                         summaryCard.classList.remove('summary-visible');
-                        summaryCard.innerHTML = '<div class="summary-placeholder">Run a simulation to see the forecasted production.</div>';
+                        summaryCard.innerHTML = '<div class="summary-placeholder">Jalankan simulasi untuk melihat proyeksi produksi.</div>';
                     }
 
                     summaryCard.classList.remove('fade-in');
@@ -227,8 +227,8 @@
             })
             .catch(() => {
                 btn.disabled = false;
-                btn.textContent = 'Run Monte Carlo Simulation';
-                message.textContent = 'An error occurred while running the simulation.';
+                btn.textContent = 'Jalankan Simulasi Monte Carlo';
+                message.textContent = 'Terjadi kesalahan saat menjalankan simulasi.';
                 message.classList.add('error');
             });
         });

@@ -126,7 +126,7 @@ def api_predict():
     data = request.get_json(silent=True) or {}
     years_to_predict = int(data.get("years_to_predict", 0))
     if years_to_predict <= 0:
-        return jsonify({"error": "years_to_predict must be positive"}), 400
+        return jsonify({"error": "Nilai years_to_predict harus lebih dari 0"}), 400
 
     random_numbers = lcm_random(years_to_predict)
     prediction_results = map_random_to_production(base_data_cache, random_numbers)
